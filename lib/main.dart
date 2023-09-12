@@ -1,20 +1,18 @@
-import 'package:emart/BottomNavPage/Cart.dart';
-import 'package:emart/main_pages/LoginPage.dart';
+// ignore_for_file: unrelated_type_equality_checks
+import 'package:emart/widgets/SplashScreen.dart';
 import 'package:flutter/material.dart';
-import 'main_pages/Home_Page.dart';
 
 void main() {
-  runApp(const Emart());
+  runApp(Emart());
 }
 
 class Emart extends StatelessWidget {
-  const Emart({super.key});
-
+  Emart({super.key});
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CartState.KEYLOGIN == false ? LoginPage() : HomePage(),
+      home: SplashScreen(),
     );
   }
 }
