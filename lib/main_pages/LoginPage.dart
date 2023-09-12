@@ -1,5 +1,5 @@
 import 'package:emart/BottomNavPage/Cart.dart';
-import 'package:emart/widgets/CheckOut.dart';
+import 'package:emart/main_pages/Home_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -86,9 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                         // ignore: use_build_context_synchronously
                         Navigator.pushReplacement(context,
                             MaterialPageRoute(builder: (context) {
-                          return CheckOutPage(
-                            Price: '0',
-                          );
+                          return const HomePage();
                         }));
                       },
                       child: const Text(

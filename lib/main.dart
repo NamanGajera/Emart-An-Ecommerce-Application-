@@ -1,3 +1,5 @@
+import 'package:emart/BottomNavPage/Cart.dart';
+import 'package:emart/main_pages/LoginPage.dart';
 import 'package:flutter/material.dart';
 import 'main_pages/Home_Page.dart';
 
@@ -12,7 +14,7 @@ class Emart extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: CartState.KEYLOGIN == false ? LoginPage() : HomePage(),
     );
   }
 }

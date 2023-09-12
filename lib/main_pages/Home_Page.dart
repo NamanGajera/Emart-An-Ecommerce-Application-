@@ -1,6 +1,9 @@
-// ignore_for_file: file_names, non_constant_identifier_names
+// ignore_for_file: file_names, non_constant_identifier_names, use_build_context_synchronously
 import 'package:emart/category_pages/Clothing.dart';
+import 'package:emart/main_pages/LoginPage.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:velocity_x/velocity_x.dart';
 import '../BottomNavPage/About.dart';
 import '../BottomNavPage/Cart.dart';
 import '../BottomNavPage/History.dart';
@@ -67,47 +70,114 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const SizedBox(height: 15),
-                Card(
-                  elevation: 3,
-                  child: Container(
-                    height: 40,
-                    padding: const EdgeInsets.only(left: 10),
-                    alignment: Alignment.centerLeft,
-                    width: double.infinity,
-                    child: Text('Catagories'),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                    VxToast.show(
+                      context,
+                      msg: 'Catagories',
+                      bgColor: Colors.deepPurple[100],
+                      textColor: Colors.black,
+                      pdHorizontal: 50,
+                    );
+                  },
+                  child: Card(
+                    elevation: 3,
+                    child: Container(
+                      height: 40,
+                      padding: const EdgeInsets.only(left: 10),
+                      alignment: Alignment.centerLeft,
+                      width: double.infinity,
+                      child: const Text(
+                        'Catagories',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 8),
-                Card(
-                  elevation: 3,
-                  child: Container(
-                    height: 40,
-                    padding: const EdgeInsets.only(left: 10),
-                    alignment: Alignment.centerLeft,
-                    width: double.infinity,
-                    child: Text('About'),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                    VxToast.show(
+                      context,
+                      msg: 'About',
+                      bgColor: Colors.deepPurple[100],
+                      textColor: Colors.black,
+                      pdHorizontal: 50,
+                    );
+                  },
+                  child: Card(
+                    elevation: 3,
+                    child: Container(
+                      height: 40,
+                      padding: const EdgeInsets.only(left: 10),
+                      alignment: Alignment.centerLeft,
+                      width: double.infinity,
+                      child: const Text(
+                        'About',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 8),
-                Card(
-                  elevation: 3,
-                  child: Container(
-                    height: 40,
-                    padding: const EdgeInsets.only(left: 10),
-                    alignment: Alignment.centerLeft,
-                    width: double.infinity,
-                    child: Text('Setting'),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                    VxToast.show(
+                      context,
+                      msg: 'Setting',
+                      bgColor: Colors.deepPurple[100],
+                      textColor: Colors.black,
+                      pdHorizontal: 50,
+                    );
+                  },
+                  child: Card(
+                    elevation: 3,
+                    child: Container(
+                      height: 40,
+                      padding: const EdgeInsets.only(left: 10),
+                      alignment: Alignment.centerLeft,
+                      width: double.infinity,
+                      child: const Text(
+                        'Setting',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 8),
-                Card(
-                  elevation: 3,
-                  child: Container(
-                    height: 40,
-                    padding: const EdgeInsets.only(left: 10),
-                    alignment: Alignment.centerLeft,
-                    width: double.infinity,
-                    child: Text('Log Out'),
+                GestureDetector(
+                  onTap: () async {
+                    Navigator.pop(context);
+                    VxToast.show(
+                      context,
+                      msg: 'Log Out.....',
+                      bgColor: Colors.deepPurple[100],
+                      textColor: Colors.black,
+                      pdHorizontal: 50,
+                    );
+                    var sharedPref = await SharedPreferences.getInstance();
+                    sharedPref.setBool(CartState.KEYLOGIN, false);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginPage()),
+                    );
+                  },
+                  child: Card(
+                    elevation: 3,
+                    child: Container(
+                      height: 40,
+                      padding: const EdgeInsets.only(left: 10),
+                      alignment: Alignment.centerLeft,
+                      width: double.infinity,
+                      child: const Text(
+                        'Log Out',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -150,7 +220,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 );
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.favorite_border_outlined,
               ),
             ),
