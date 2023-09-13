@@ -13,16 +13,6 @@ class Clothing extends StatefulWidget {
 
 class ClothingState extends State<Clothing> {
   int itemcount = ClothItemName.length;
-
-  List<bool> selected = <bool>[];
-  @override
-  initState() {
-    for (var i = 0; i < itemcount; i++) {
-      selected.add(false);
-    }
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,6 +28,7 @@ class ClothingState extends State<Clothing> {
             mainAxisExtent: 400,
           ),
           itemBuilder: (context, index) {
+            bool isselected = savefavitem.contains(ClothImages[index]);
             return InkWell(
               onTap: () {
                 Navigator.push(
@@ -62,9 +53,7 @@ class ClothingState extends State<Clothing> {
                   // this column contain item information
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     //images of item
                     Center(
                       child: Image.asset(
@@ -72,16 +61,12 @@ class ClothingState extends State<Clothing> {
                         height: 200,
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     // brand name of item
                     Center(
                       child: Text(ClothBrandName[index]),
                     ),
-                    const SizedBox(
-                      height: 5,
-                    ),
+                    const SizedBox(height: 5),
                     // name of item
                     Center(
                       child: Text(
@@ -138,7 +123,11 @@ class ClothingState extends State<Clothing> {
                           IconButton(
                             onPressed: () {
                               setState(() {
-                                selected[index] = !selected[index];
+                                if (isselected) {
+                                  savefavitem.remove(ClothImages[index]);
+                                } else {
+                                  savefavitem.add(ClothImages[index]);
+                                }
                               });
                               if (favoriteitemName
                                   .contains(ClothItemName[index])) {
@@ -153,12 +142,15 @@ class ClothingState extends State<Clothing> {
                                 FavItemPrice.add(ColthPrice[index]);
                               }
                             },
-                            color: selected.elementAt(index)
-                                ? Colors.red
-                                : Colors.black,
-                            icon: selected.elementAt(index)
-                                ? const Icon(Icons.favorite)
-                                : const Icon(Icons.favorite_border),
+                            icon: isselected
+                                ? const Icon(
+                                    Icons.favorite,
+                                    color: Colors.red,
+                                  )
+                                : const Icon(
+                                    Icons.favorite_border,
+                                    color: Colors.black,
+                                  ),
                           ),
                         ],
                       ),

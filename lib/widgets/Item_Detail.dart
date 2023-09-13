@@ -45,7 +45,9 @@ class _ItemDetailState extends State<ItemDetail> {
           actions: [
             IconButton(
               onPressed: () {
-                select = !select;
+                setState(() {
+                  select = !select;
+                });
                 if (favoriteitemName.contains(widget.Iname)) {
                   favoriteitemName.remove(widget.Iname);
                   FavItemImage.remove(widget.Iimage);

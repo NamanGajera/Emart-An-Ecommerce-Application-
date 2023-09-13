@@ -11,13 +11,8 @@ class FavoritePage extends StatefulWidget {
 }
 
 class _FavoritePageState extends State<FavoritePage> {
-  int itemcount = ClothItemName.length;
-  List<bool> selected = <bool>[];
   @override
   initState() {
-    for (var i = 0; i < itemcount; i++) {
-      selected.add(false);
-    }
     super.initState();
   }
 
@@ -164,8 +159,10 @@ class _FavoritePageState extends State<FavoritePage> {
                             IconButton(
                                 onPressed: () {
                                   setState(() {
-                                    selected[index] =
-                                        !selected.elementAt(index);
+                                    if (savefavitem
+                                        .contains(FavItemImage[index])) {
+                                      savefavitem.remove(FavItemImage[index]);
+                                    }
                                   });
                                   favoriteitemName
                                       .remove(favoriteitemName[index]);

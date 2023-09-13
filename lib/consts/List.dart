@@ -140,3 +140,5 @@ List<String> HistoryItemPrice = [];
 
 //Store History product price
 List<String> HistoryItemDate = [];
+
+Set<String> savefavitem = Set<String>();

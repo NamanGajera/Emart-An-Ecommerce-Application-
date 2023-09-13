@@ -14,15 +14,6 @@ class FootWear extends StatefulWidget {
 class _FootWearState extends State<FootWear> {
   int itemcount = FWItemName.length;
 
-  List<bool> selected = <bool>[];
-  @override
-  initState() {
-    for (var i = 0; i < itemcount; i++) {
-      selected.add(false);
-    }
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,6 +29,7 @@ class _FootWearState extends State<FootWear> {
             mainAxisExtent: 400,
           ),
           itemBuilder: (context, index) {
+            bool isselected = savefavitem.contains(FootWearImages[index]);
             return InkWell(
               onTap: () {
                 Navigator.push(
@@ -138,7 +130,11 @@ class _FootWearState extends State<FootWear> {
                           IconButton(
                             onPressed: () async {
                               setState(() {
-                                selected[index] = !selected.elementAt(index);
+                                if (isselected) {
+                                  savefavitem.remove(FootWearImages[index]);
+                                } else {
+                                  savefavitem.add(FootWearImages[index]);
+                                }
                               });
                               if (favoriteitemName
                                   .contains(FWItemName[index])) {
@@ -152,15 +148,9 @@ class _FootWearState extends State<FootWear> {
                                 FavItemImage.add(FootWearImages[index]);
                                 FavItemPrice.add(FWPrice[index]);
                               }
-                              print(favoriteitemName);
-                              print(FavItemBrandName);
-                              print(FavItemImage);
-                              print(FavItemPrice);
                             },
-                            color: selected.elementAt(index)
-                                ? Colors.red
-                                : Colors.black,
-                            icon: selected.elementAt(index)
+                            color: isselected ? Colors.red : Colors.black,
+                            icon: isselected
                                 ? const Icon(Icons.favorite)
                                 : const Icon(Icons.favorite_border),
                           ),
