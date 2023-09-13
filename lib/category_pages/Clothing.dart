@@ -12,7 +12,12 @@ class Clothing extends StatefulWidget {
 }
 
 class ClothingState extends State<Clothing> {
-  int itemcount = ClothItemName.length;
+  @override
+  void initState() {
+    savefavitem;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(

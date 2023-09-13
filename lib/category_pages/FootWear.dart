@@ -12,7 +12,11 @@ class FootWear extends StatefulWidget {
 }
 
 class _FootWearState extends State<FootWear> {
-  int itemcount = FWItemName.length;
+  @override
+  void initState() {
+    savefavitem;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
